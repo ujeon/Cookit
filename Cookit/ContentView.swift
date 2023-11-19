@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+  @State private var selection: Tab = .search
+  
+  enum Tab {
+    case search
+  }
+  
+  var body: some View {
+    TabView(selection: $selection) {
+      MealSearch()
+        .tabItem {
+          Label("Search", systemImage: "magnifyingglass")
         }
-        .padding()
+        .tag(Tab.search)
     }
+  }
 }
 
 #Preview {
-    ContentView()
+  ContentView()
 }
